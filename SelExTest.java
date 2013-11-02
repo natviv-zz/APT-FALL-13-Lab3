@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
  
  
-public class SeleniumTest {
+public class SelExTest {
  
     private static final String LOGIN_PAGE_URL = "http://adnan.appspot.com/testing-lab-login.html";
     private static final String CONVERSION_URL = "http://adnan.appspot.com/testing-lab-calculator.html";
