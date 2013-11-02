@@ -1,0 +1,51 @@
+[natviv@localhost junitexercise]$ javac -cp selenium-server-standalone-2.37.0.jar:. SelExTest.java
+[natviv@localhost junitexercise]$ java -cp selenium-server-standalone-2.37.0.jar:. SelExTest
+Validating passwords of Andy , Bob and Charley
+Redirecting to the login page.
+Entered username -> andy and password -> apple
+Invalid user-password combination --- check andy,apple
+Redirecting to the login page.
+Entered username -> bob and password -> bathtub
+Redirecting to the login page.
+Entered username -> charley and password -> china
+Invalid user-password combination --- check charley,china
+Validated passwords of Andy, Bob and Charley
+Wait 10 seconds to prevent frequent login error!
+To check if username is case insensitive and username-password combination can have whitespaces.
+Redirecting to the login page.
+Entered username -> ANDy  and password -> apple   
+Invalid user-password combination ANDy ,apple   
+Redirecting to the login page.
+Entered username -> bOB and password ->     bathtub
+Redirecting to the login page.
+Entered username -> CHARley and password -> CHINA
+Invalid user-password combination CHARley,CHINA
+Verified that username is case insensitive
+Running the temperature test with input as 3.14
+Redirecting to the temperature converter page.
+The given input is 3.14 precision digits. The output is Farenheit
+Running the temperature test with input as 212
+Redirecting to the temperature converter page.
+The given input is 212 precision digits. The output is Farenheit
+Running the temperature test with input as 42
+Redirecting to the temperature converter page.
+The given input is 42 precision digits. The output is Farenheit
+Running the temperature test with input as -500
+Redirecting to the temperature converter page.
+The given input is -500 precision digits. The output is Farenheit
+Running the temperature test with input as 666
+Redirecting to the temperature converter page.
+The given input is 666 precision digits. The output is Farenheit
+Running the temperature test with input as 789
+Redirecting to the temperature converter page.
+The given input is 789 precision digits. The output is Farenheit
+Testing for case insensitivity of parameter input farenheitTemperature=-42
+Testing for case insensitivity of parameter input FARENHEitTemperature=-42
+Parameter check test failed as they are case sensitive!
+Testing for Exception with input as 2112vivek
+Redirecting to the temperature converter page.
+No NumberFormatException
+Testing for Exception with input as 9.73E2
+Redirecting to the temperature converter page.
+NumberFormatException as expected
+
