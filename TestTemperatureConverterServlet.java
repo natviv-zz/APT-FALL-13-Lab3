@@ -87,7 +87,7 @@ public class TestTemperatureConverterServlet extends TestCase {
         s.doGet(request,response);
         response.verify();
         System.out.println(response.getOutputStreamContents());
-        assertTrue(response.getOutputStreamContents().split("=")[1].split("\\s")[1].split("\\.")[1].length() == 0);
+        assertTrue(response.getOutputStreamContents().split("=")[1].split("\\s")[1].split("\\.")[1].length() == 1);
       }
 
      //test for non decimal input notation
