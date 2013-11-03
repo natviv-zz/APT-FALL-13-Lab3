@@ -65,8 +65,6 @@ public class TestMp3Player extends TestCase {
         expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
         expect(mp3Mock.isPlaying()).andReturn(false).times(1);
         replay(mp3Mock);
-  
-        // Don't set the list up
         assertFalse(mp3.isPlaying());
         mp3.play();
         assertFalse(mp3.isPlaying());
@@ -109,24 +107,17 @@ public class TestMp3Player extends TestCase {
         expect(mp3Mock.currentSong()).andReturn((String) list.get(3)).times(1);
         expect(mp3Mock.isPlaying()).andReturn(true).times(1);
         replay(mp3Mock);
-          
-  
         mp3.loadSongs(list);
-  
         mp3.play();
-  
         assertTrue(mp3.isPlaying());
-  
         mp3.prev();
         assertEquals(mp3.currentSong(), list.get(0));
         assertTrue(mp3.isPlaying());
-  
         mp3.next();
         assertEquals(mp3.currentSong(), list.get(1));
         mp3.next();
         assertEquals(mp3.currentSong(), list.get(2));
         mp3.prev();
-  
         assertEquals(mp3.currentSong(), list.get(1));
         mp3.next();
         assertEquals(mp3.currentSong(), list.get(2));
