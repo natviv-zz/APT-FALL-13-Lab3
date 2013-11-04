@@ -74,9 +74,9 @@ public class MockMp3Player implements Mp3Player{
     }
  
     @Override
-    public void loadSongs(ArrayList names) {
-        for(Object name : names){
-            this.songs.add(name);
+    public void loadSongs(ArrayList songlist) {
+        for(Object song : songlist){
+            this.songs.add(song);
         }
     }
  
