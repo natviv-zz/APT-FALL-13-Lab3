@@ -34,7 +34,7 @@ public class MockMp3Player implements Mp3Player{
     public void stop() {
         if(this.songs.size() > 0){
             this.isPlaying = false;
-            this.songseconds = 0;
+            this.songseconds = 0.0;
         }
     }
  
@@ -51,18 +51,20 @@ public class MockMp3Player implements Mp3Player{
  
     @Override
     public void next() {
-        if(this.csptr < this.songs.size()) {
-            if(this.csptr < this.songs.size() - 1) {
-                this.csptr++;
-            }
+ 
+        if(this.csptr < this.songs.size() - 1) 
+        {
+          this.csptr++;
         }
+        
         this.songseconds = 0;
  
     }
  
     @Override
     public void prev() {
-        if(this.csptr > 0) this.csptr--;
+        if(this.csptr > 0) 
+        this.csptr--;
         this.songseconds = 0;
     }
  
@@ -72,9 +74,9 @@ public class MockMp3Player implements Mp3Player{
     }
  
     @Override
-    public void loadSongs(ArrayList names) {
-        for(Object name : names){
-            this.songs.add(name);
+    public void loadSongs(ArrayList songlist) {
+        for(Object song : songlist){
+            this.songs.add(song);
         }
     }
  

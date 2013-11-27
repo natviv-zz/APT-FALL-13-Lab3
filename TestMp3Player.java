@@ -7,12 +7,14 @@ import junit.framework.TestCase;
 public class TestMp3Player extends TestCase {
   
     protected Mp3Player mp3;
-    protected Mp3Player mp3Mock;
+    protected Mp3Player Mockmp3;
     protected ArrayList list = new ArrayList();
   
     public void setUp() {
-        mp3Mock = createMock(Mp3Player.class);
-        mp3 = mp3Mock;
+        Mockmp3 = createMock(Mp3Player.class);
+        mp3 = Mockmp3;
+        
+        //mp3 = new MockMp3Player();
   
         list = new ArrayList();
         list.add("Bill Chase -- Open Up Wide");
@@ -23,20 +25,20 @@ public class TestMp3Player extends TestCase {
     }
   
     public void testPlay() {
-        mp3Mock.loadSongs(list);
+        Mockmp3.loadSongs(list);
         expectLastCall();
-        expect(mp3Mock.isPlaying()).andReturn(false).times(1);
-        mp3Mock.play();
+        expect(Mockmp3.isPlaying()).andReturn(false).times(1);
+        Mockmp3.play();
         expectLastCall();
-        expect(mp3Mock.isPlaying()).andReturn(true).times(1);
-        expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
-        mp3Mock.pause();
+        expect(Mockmp3.isPlaying()).andReturn(true).times(1);
+        expect(Mockmp3.currentPosition()).andReturn(0.01).times(1);
+        Mockmp3.pause();
         expectLastCall();
-        expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
-        mp3Mock.stop();
+        expect(Mockmp3.currentPosition()).andReturn(0.01).times(1);
+        Mockmp3.stop();
         expectLastCall();
-        expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
-        replay(mp3Mock);
+        expect(Mockmp3.currentPosition()).andReturn(0.01).times(1);
+        replay(Mockmp3);
   
         mp3.loadSongs(list);
         assertFalse(mp3.isPlaying());
@@ -51,22 +53,22 @@ public class TestMp3Player extends TestCase {
     }
   
     public void testPlayNoList() {
-        expect(mp3Mock.isPlaying()).andReturn(false).times(1);
-        mp3Mock.play();
+        expect(Mockmp3.isPlaying()).andReturn(false).times(1);
+        Mockmp3.play();
         expectLastCall();
-        expect(mp3Mock.isPlaying()).andReturn(false).times(1);
-        expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
-        mp3Mock.pause();
+        expect(Mockmp3.isPlaying()).andReturn(false).times(1);
+        expect(Mockmp3.currentPosition()).andReturn(0.01).times(1);
+        Mockmp3.pause();
         expectLastCall();
-        expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
-        expect(mp3Mock.isPlaying()).andReturn(false).times(1);
-        mp3Mock.stop();
+        expect(Mockmp3.currentPosition()).andReturn(0.01).times(1);
+        expect(Mockmp3.isPlaying()).andReturn(false).times(1);
+        Mockmp3.stop();
         expectLastCall();
-        expect(mp3Mock.currentPosition()).andReturn(0.01).times(1);
-        expect(mp3Mock.isPlaying()).andReturn(false).times(1);
-        replay(mp3Mock);
-  
-        // Don't set the list up
+        expect(Mockmp3.currentPosition()).andReturn(0.01).times(1);
+        expect(Mockmp3.isPlaying()).andReturn(false).times(1);
+        replay(Mockmp3);
+        
+        
         assertFalse(mp3.isPlaying());
         mp3.play();
         assertFalse(mp3.isPlaying());
@@ -80,53 +82,48 @@ public class TestMp3Player extends TestCase {
     }
   
     public void testAdvance() {
-        mp3Mock.loadSongs(list);
+        Mockmp3.loadSongs(list);
         expectLastCall();
-        mp3Mock.play();
+        Mockmp3.play();
         expectLastCall();
-        expect(mp3Mock.isPlaying()).andReturn(true).times(1);
-        mp3Mock.prev();
+        expect(Mockmp3.isPlaying()).andReturn(true).times(1);
+        Mockmp3.prev();
         expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(0)).times(1);
-        expect(mp3Mock.isPlaying()).andReturn(true).times(1);
-        mp3Mock.next();
+        expect(Mockmp3.currentSong()).andReturn((String) list.get(0)).times(1);
+        expect(Mockmp3.isPlaying()).andReturn(true).times(1);
+        Mockmp3.next();
         expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(1)).times(1);
-        mp3Mock.next();
+        expect(Mockmp3.currentSong()).andReturn((String) list.get(1)).times(1);
+        Mockmp3.next();
         expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(2)).times(1);
-        mp3Mock.prev();
+        expect(Mockmp3.currentSong()).andReturn((String) list.get(2)).times(1);
+        Mockmp3.prev();
         expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(1)).times(1);
-        mp3Mock.next();
+        expect(Mockmp3.currentSong()).andReturn((String) list.get(1)).times(1);
+        Mockmp3.next();
         expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(2)).times(1);
-        mp3Mock.next();
+        expect(Mockmp3.currentSong()).andReturn((String) list.get(2)).times(1);
+        //Mockmp3.next();
+        //expectLastCall();
+        //expect(Mockmp3.currentSong()).andReturn((String) list.get(3)).times(1);
+        Mockmp3.next();
         expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(3)).times(1);
-        mp3Mock.next();
-        expectLastCall();
-        expect(mp3Mock.currentSong()).andReturn((String) list.get(3)).times(1);
-        expect(mp3Mock.isPlaying()).andReturn(true).times(1);
-        replay(mp3Mock);
-          
-  
+        expect(Mockmp3.currentSong()).andReturn((String) list.get(3)).times(1);
+        expect(Mockmp3.isPlaying()).andReturn(true).times(1);
+        replay(Mockmp3);
+        
+        
         mp3.loadSongs(list);
-  
         mp3.play();
-  
         assertTrue(mp3.isPlaying());
-  
         mp3.prev();
         assertEquals(mp3.currentSong(), list.get(0));
         assertTrue(mp3.isPlaying());
-  
         mp3.next();
         assertEquals(mp3.currentSong(), list.get(1));
         mp3.next();
         assertEquals(mp3.currentSong(), list.get(2));
         mp3.prev();
-  
         assertEquals(mp3.currentSong(), list.get(1));
         mp3.next();
         assertEquals(mp3.currentSong(), list.get(2));
