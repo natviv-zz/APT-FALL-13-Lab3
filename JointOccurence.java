@@ -11,7 +11,44 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+/*
+This computes the Joint Occurence of words in files of the specified input directory of the HDFS system.
+It uses the stripe based approach where in for every document an associative array is emitted by the mapper for each word. 
+The array is an essentially a hash map which has indexes and values as words co-occuring with the given word and the
+number of such co-occurences. The reducer takes associative arrays linked with each word and gives a final associative array
+output which sums up the joint ocuurences of words with the given word for all words occuring in the document.
+Two algorithmic modifications for the stripe based approach are:
+1> Use a combiner after the mapper as the operations within the reducers are both commutative and asociative. The key space
+being the vocabulary the combiners can perform local aggregation-ssociative arrays can be merged whenever a
+word is encountered multiple times by a mapper.
+2>An in-mapper combination can also be attempted for optimization. However memory management issues may occur as the
+combiners may grow quite large and may require periodical flush in memory structures
+3>Define a custom partioner to send all associative arrays of the same term to the same reducer
+Perhaps a sort order could be defined to this during the shuffle and sort phase
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
 package org.apache.hadoop.examples;
 
 import java.io.IOException;
